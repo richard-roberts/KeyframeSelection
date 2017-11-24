@@ -9,6 +9,17 @@ class Timeline:
         self.end = end
         self.fps = fps
 
+    def as_range(self, increment: Time):
+        times: List[Time] = []
+
+        current = self.start
+        while current < self.end:
+            times.append(current)
+            current = current + increment
+        times.append(self.end)
+
+        return times
+
 
 class CreateTimeline:
     @staticmethod
