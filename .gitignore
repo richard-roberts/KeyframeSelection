@@ -3,3 +3,6 @@
 
 # Pycharm project files
 *.idea
+
+# Test output
+.cache
