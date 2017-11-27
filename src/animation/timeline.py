@@ -25,6 +25,16 @@ class Timeline:
         assert int(n_frames) == n_frames
         return int(n_frames)
 
+    def permutations(self):
+        timelines = []
+        s = int(self.start.time)
+        e = int(self.end.time)
+        for s in range(s, e):
+            for e in range(s + 1, e + 1):
+                timeline: Timeline = Timeline(Time(s), Time(e), self.fps)
+                timelines.append(timeline)
+        return timelines
+
 
 class CreateTimeline:
     @staticmethod
