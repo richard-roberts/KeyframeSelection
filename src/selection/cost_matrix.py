@@ -1,5 +1,7 @@
 from typing import List
 import multiprocessing as mp
+from multiprocessing.dummy import Pool as ThreadPool
+
 
 from src.animation.timeline import Timeline
 from src.animation.animation import Animation
@@ -33,8 +35,10 @@ class CostMatrix:
         self.matrix[s][e] = v
 
     def _execute_operation(self) -> None:
-        for timeline in self.animation.timeline.permutations():
-            self._run_calculation_on_timeline(timeline)
+        pool = ThreadPool(4)
+        pool.map(self._run_calculation_on_timeline, self.animation.timeline.permutations())
+        pool.close()
+        pool.join()
 
     def value(self, timeline: Timeline) -> float:
         assert self.matrix != {}
@@ -59,7 +63,7 @@ from src.scene.things.character import Character
 from src.utils import IO
 
 def exe():
-    anim = CreateAnimation.from_csv("tests/data/walk.csv", Character, Joint)
+    anim = CreateAnimation.from_csv("tests/data/run.csv", Character, Joint)
     op = CostMatrixOperation(CostMatrixLibrary.max_point_to_line_distance)
     cm = CostMatrix(anim, op)
     IO.write_list_of_lists_as_csv("tests/out/eval.csv", cm.as_csv())
