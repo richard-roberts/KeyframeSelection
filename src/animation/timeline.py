@@ -20,6 +20,11 @@ class Timeline:
 
         return times
 
+    def number_of_frames(self) -> int:
+        n_frames = self.end.time - self.start.time + 1
+        assert int(n_frames) == n_frames
+        return int(n_frames)
+
 
 class CreateTimeline:
     @staticmethod
