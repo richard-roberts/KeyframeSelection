@@ -14,10 +14,10 @@ from src.selection.cost_matrix_library import CostMatrixLibrary
 class TestCostMatrix(unittest.TestCase):
 
     def test_setup(self):
-        csv_filepath = "tests/data/evaluation.csv"
+        csv_filepath = "tests/data/run-evaluation.csv"
         csv_from_csv_file_read = IO.read_csv_content_as_list_of_lists(csv_filepath)
 
-        anim = CreateAnimation.from_csv("tests/data/walk.csv", Character, Joint)
+        anim = CreateAnimation.from_csv("tests/data/run-animation.csv", Character, Joint)
         op = CostMatrixOperation(CostMatrixLibrary.max_point_to_line_distance)
         cost_matrix = CostMatrix(anim, op)
         csv_from_cost_matrix_object = cost_matrix.as_csv()

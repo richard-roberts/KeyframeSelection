@@ -11,7 +11,7 @@ from src.scene.coordinates.joint import Joint
 class TestAnimation(unittest.TestCase):
 
     def test_setup(self):
-        filepath: str = "tests/data/walk.csv"
+        filepath: str = "tests/data/walk-animation.csv"
         animation = CreateAnimation.from_csv(filepath, Character, Joint)
         csv_from_animation_object: List[List[str]] = animation.as_csv()
         csv_from_csv_file_read: List[List[str]] = IO.read_csv_content_as_list_of_lists(filepath)
