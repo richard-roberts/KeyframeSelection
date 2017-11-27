@@ -10,7 +10,7 @@ class IO:
 
     @staticmethod
     def open_file_to_write(filepath: str) -> TextIOWrapper:
-        return open(filepath, "r")
+        return open(filepath, "w")
 
     @staticmethod
     def close(file: TextIOWrapper) -> None:
