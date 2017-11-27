@@ -13,6 +13,12 @@ class Animation:
         self.timeline = timeline
         self.frames = frames
 
+    def get_frames(self, timeline: Timeline):
+        anim_start_time = int(self.timeline.start.time)
+        s = int(timeline.start.time)
+        e = int(timeline.end.time)
+        return [self.frames[i - anim_start_time] for i in range(s, e + 1)]
+
     def dimensions(self) -> List[str]:
         dimensions = ["time"]
         first_thing: Thing = self.frames[0].things[0]

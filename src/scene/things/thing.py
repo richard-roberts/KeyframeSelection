@@ -9,3 +9,9 @@ class Thing:
         self.location = location
         self.meshes = meshes
         self.coordinates = coordinates
+
+    def as_point(self):
+        point = []
+        for coordinate in self.coordinates:
+            point += coordinate.as_point()
+        return point
