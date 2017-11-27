@@ -35,6 +35,19 @@ class IO:
 
         return outer_list
 
+    @staticmethod
+    def write_list_of_lists_as_csv(filepath: str, data: List[List[str]]) -> None:
+        f = IO.open_file_to_write(filepath)
+
+        data_str = ""
+        row_size = len(data[0])
+        row_str = "%s," * (row_size - 1) + "%s\n"
+        for row in data:
+            data_str += row_str % tuple(row)
+
+        f.write(data_str)
+        f.close()
+
 
 class TransformStringsInList:
     @staticmethod
