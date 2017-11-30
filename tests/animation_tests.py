@@ -3,16 +3,14 @@ from typing import List
 import unittest
 
 from src.utils import IO
-from src.setup.animation import CreateAnimation
-from src.scene.things.character import Character
-from src.scene.coordinates.joint import Joint
+from src.animation.animation import Animation
 
 
 class TestAnimation(unittest.TestCase):
 
     def test_setup(self):
         filepath: str = "tests/data/walk-animation.csv"
-        animation = CreateAnimation.from_csv(filepath, Character, Joint)
+        animation = Animation.character_animation_from_csv(filepath)
         csv_from_animation_object: List[List[str]] = animation.as_csv()
         csv_from_csv_file_read: List[List[str]] = IO.read_csv_content_as_list_of_lists(filepath)
 

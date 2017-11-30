@@ -1,7 +1,7 @@
 import numpy as np
 
 
-class CostMatrixLibrary:
+class ErrorMatrixLibrary:
 
     @staticmethod
     def max_point_to_line_distance(points):
@@ -15,15 +15,19 @@ class CostMatrixLibrary:
             numerator = np.dot(ps, es)
             denominator = np.dot(es, es)
 
-            ratio = numerator / denominator
             if denominator == 0.0:
                 return 999999999.0
             else:
+                ratio = numerator / denominator
                 return np.linalg.norm(ps - ratio * es)
 
         max_distance = 0.0
-        for p in points:
+        index_of_max_distance = -1
+
+        for i, p in enumerate(points):
             curr_distance = distance_between_line_and_point(p)
             if curr_distance > max_distance:
                 max_distance = curr_distance
-        return max_distance
+                index_of_max_distance = i
+
+        return max_distance, index_of_max_distance
