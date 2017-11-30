@@ -3,9 +3,7 @@ from typing import List
 import unittest
 
 from src.utils import IO
-from src.setup.animation import CreateAnimation
-from src.scene.coordinates.joint import Joint
-from src.scene.things.character import Character
+from src.animation.animation import Animation
 from src.selection.error_matrix import ErrorMatrix
 from src.selection.error_matrix_operation import ErrorMatrixOperation
 from src.selection.error_matrix_library import ErrorMatrixLibrary
@@ -17,7 +15,7 @@ class TestErrorMatrix(unittest.TestCase):
         csv_filepath = "tests/data/run-evaluation.csv"
         csv_from_csv_file_read = IO.read_csv_content_as_list_of_lists(csv_filepath)
 
-        anim = CreateAnimation.from_csv("tests/data/run-animation.csv", Character, Joint)
+        anim = Animation.character_animation_from_csv("tests/data/run-animation.csv")
         op = ErrorMatrixOperation(ErrorMatrixLibrary.max_point_to_line_distance)
         error_matrix = ErrorMatrix.from_animation(anim, op)
         csv_from_error_matrix_object = error_matrix.as_csv()
