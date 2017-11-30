@@ -5,12 +5,14 @@ from src.animation.frame import Frame
 from src.animation.time import Time
 from src.animation.timeline import CreateTimeline
 from src.scene.coordinates.coordinate import Coordinate
+from src.scene.coordinates.joint import Joint
 from src.scene.coordinates.value import Value
 from src.scene.things.thing import Thing
+from src.scene.things.character import Character
 from src.utils import IO, TransformStringsInList
 
 
-class CreateAnimation:
+class CreateCharacterAnimation:
     @staticmethod
     def _get_data(filepath) -> Tuple[List[Time], List[List[Value]]]:
         csv = IO.read_csv_content_as_list_of_lists(filepath)
@@ -28,7 +30,7 @@ class CreateAnimation:
         return times, values
 
     @staticmethod
-    def _organise_values_into_coordinates(coordinate_class, values: List[Value]) -> List[Coordinate]:
+    def _organise_values_into_coordinates(values: List[Value]) -> List[Coordinate]:
         coordinates = []
 
         last_value_name = values[0].name
@@ -36,32 +38,32 @@ class CreateAnimation:
         for value in values:
             curr_value_name = value.name
             if last_value_name.split("-")[0] != curr_value_name.split("-")[0]:
-                coordinate: Coordinate = coordinate_class(sublist_of_values)
+                coordinate: Coordinate = Joint(sublist_of_values)
                 coordinates.append(coordinate)
                 sublist_of_values = []
             sublist_of_values.append(value)
 
         # Put in the last coordinate
         if sublist_of_values:
-            coordinate: Coordinate = coordinate_class(sublist_of_values)
+            coordinate: Coordinate = Joint(sublist_of_values)
             coordinates.append(coordinate)
 
         return coordinates
 
     @staticmethod
-    def _construct_thing_from_values(thing_class, coordinate_class, values: List[Value]) -> Thing:
-        coordinates = CreateAnimation._organise_values_into_coordinates(coordinate_class, values)
-        return thing_class(None, [], coordinates)
+    def _construct_thing_from_values(values: List[Value]) -> Thing:
+        coordinates = CreateCharacterAnimation._organise_values_into_coordinates(values)
+        return Character(None, [], coordinates)
 
     @staticmethod
-    def from_csv(filepath: str, thing_class, coordinate_class) -> Animation:
-        times, values = CreateAnimation._get_data(filepath)
+    def from_csv(filepath: str) -> Animation:
+        times, values = CreateCharacterAnimation._get_data(filepath)
 
         timeline = CreateTimeline.from_times(times, 120)
 
         frames: List[Frame] = []
         for (time, value) in zip(times, values):
-            thing = CreateAnimation._construct_thing_from_values(thing_class, coordinate_class, value)
+            thing = CreateCharacterAnimation._construct_thing_from_values(value)
             frame = Frame(time, [thing])
             frames.append(frame)
 
