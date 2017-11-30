@@ -3,7 +3,7 @@ import multiprocessing as mp
 from multiprocessing.dummy import Pool as ThreadPool
 
 
-from src.animation.timeline import CreateTimeline, Timeline
+from src.animation.timeline import Timeline
 from src.animation.time import Time
 from src.animation.animation import Animation
 from src.selection.error_matrix_operation import ErrorMatrixOperation
@@ -79,7 +79,7 @@ class ErrorMatrix:
         for row in data:
             s = int(row[0])
             e = int(row[1])
-            timelines.append(CreateTimeline.from_start_end(Time(s), Time(e)))
+            timelines.append(Timeline.from_start_end(Time(s), Time(e)))
             values.append(float(row[2]))
             indices.append(int(row[3]))
 

@@ -34,14 +34,12 @@ class Timeline:
                 timelines.append(timeline)
         return timelines
 
-
-class CreateTimeline:
     @staticmethod
-    def from_times(times: List[Time]) -> Timeline:
+    def from_times(times: List[Time]):
         start = times[0]
         end = times[-1]
         return Timeline(start, end)
 
     @staticmethod
-    def from_start_end(start: Time, end: Time) -> Timeline:
+    def from_start_end(start: Time, end: Time):
         return Timeline(start, end)

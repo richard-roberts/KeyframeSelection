@@ -7,7 +7,7 @@ from src.scene.things.thing import Thing
 from src.scene.things.character import Character
 from src.animation.frame import Frame
 from src.animation.time import Time
-from src.animation.timeline import CreateTimeline, Timeline
+from src.animation.timeline import Timeline
 from src.utils import IO, TransformStringsInList, TransformFloatsInList
 
 
@@ -97,7 +97,7 @@ class Animation:
     def character_animation_from_csv(filepath: str):
         times, values = Animation._get_data(filepath)
 
-        timeline = CreateTimeline.from_times(times)
+        timeline = Timeline.from_times(times)
 
         frames: List[Frame] = []
         for (time, value) in zip(times, values):
