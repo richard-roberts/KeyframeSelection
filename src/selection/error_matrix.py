@@ -5,6 +5,7 @@ from multiprocessing.dummy import Pool as ThreadPool
 from src.animation.timeline import Timeline
 from src.types import Time
 from src.animation.animation import Animation
+from src.selection.selection import Selection
 from src.selection.error_matrix_operation import ErrorMatrixOperation
 from src.utils import IO, TransformStringsInList
 
@@ -45,6 +46,11 @@ class ErrorMatrix:
         s = timeline.start
         e = timeline.end
         return self.matrix[s][e][0]
+
+    def value_of_max_error_for_selection(self, selection: Selection) -> float:
+        pairs: List[Tuple[Time, Time]] = selection.get_pairs()
+        timelines = [Timeline.from_start_end(a, b) for (a, b) in pairs]
+        return max([self.value_of_max_error(timeline) for timeline in timelines])
 
     def index_of_max_error(self, timeline: Timeline) -> float:
         assert self.matrix != {}
