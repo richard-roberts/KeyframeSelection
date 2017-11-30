@@ -6,12 +6,12 @@ from multiprocessing.dummy import Pool as ThreadPool
 from src.animation.timeline import CreateTimeline, Timeline
 from src.animation.time import Time
 from src.animation.animation import Animation
-from src.selection.cost_matrix_operation import CostMatrixOperation
+from src.selection.error_matrix_operation import ErrorMatrixOperation
 from src.utils import IO, TransformStringsInList
 
 
-class CostMatrix:
-    def __init__(self, animation: Animation, operation: CostMatrixOperation):
+class ErrorMatrix:
+    def __init__(self, animation: Animation, operation: ErrorMatrixOperation):
         self.animation = animation
         self.operation = operation
 
@@ -86,16 +86,16 @@ class CostMatrix:
         return timelines, values, indices
 
     @staticmethod
-    def from_csv(filepath: str, animation: Animation, operation: CostMatrixOperation):
-        timelines, values, indices = CostMatrix._get_data(filepath)
-        cost_matrix: CostMatrix = CostMatrix(animation, operation)
+    def from_csv(filepath: str, animation: Animation, operation: ErrorMatrixOperation):
+        timelines, values, indices = ErrorMatrix._get_data(filepath)
+        error_matrix: ErrorMatrix = ErrorMatrix(animation, operation)
         for (timeline, value, index) in zip(timelines, values, indices):
-            cost_matrix.set(timeline, value, index)
-        return cost_matrix
+            error_matrix.set(timeline, value, index)
+        return error_matrix
 
     @staticmethod
-    def from_animation(animation: Animation, operation: CostMatrixOperation):
-        cost_matrix: CostMatrix = CostMatrix(animation, operation)
-        cost_matrix._execute_operation()
-        return cost_matrix
+    def from_animation(animation: Animation, operation: ErrorMatrixOperation):
+        error_matrix: ErrorMatrix = ErrorMatrix(animation, operation)
+        error_matrix._execute_operation()
+        return error_matrix
 
