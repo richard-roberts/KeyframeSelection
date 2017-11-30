@@ -1,5 +1,4 @@
 from typing import List, Tuple
-import multiprocessing as mp
 from multiprocessing.dummy import Pool as ThreadPool
 
 
@@ -58,7 +57,9 @@ class ErrorMatrix:
         for timeline in self.animation.timeline.permutations():
             s = timeline.start
             e = timeline.end
-            row = ["%d" % s, "%d" % e, "%2.8f" % self.value_of_max_error(timeline), "%d" % self.index_of_max_error(timeline)]
+            row = ["%d" % s, "%d" % e,
+                   "%2.8f" % self.value_of_max_error(timeline),
+                   "%d" % self.index_of_max_error(timeline)]
             csv.append(row)
         return csv
 
@@ -98,4 +99,3 @@ class ErrorMatrix:
         error_matrix: ErrorMatrix = ErrorMatrix(animation, operation)
         error_matrix._execute_operation()
         return error_matrix
-

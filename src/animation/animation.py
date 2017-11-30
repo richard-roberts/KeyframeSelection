@@ -48,7 +48,7 @@ class Animation:
 
     def as_csv(self) -> List[List[str]]:
         dimensions: List[str] = self.dimensions()
-        data: List[List[str]] = [TransformFloatsInList.asStrings(row) for row in self.value_matrix()]
+        data: List[List[str]] = [TransformFloatsInList.as_strings(row) for row in self.value_matrix()]
         return [dimensions] + data
 
     @staticmethod

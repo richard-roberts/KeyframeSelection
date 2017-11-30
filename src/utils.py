@@ -57,5 +57,5 @@ class TransformStringsInList:
 
 class TransformFloatsInList:
     @staticmethod
-    def asStrings(data: List[float]) -> List[str]:
+    def as_strings(data: List[float]) -> List[str]:
         return [str(value) for value in data]
