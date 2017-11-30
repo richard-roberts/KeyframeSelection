@@ -15,10 +15,10 @@ class CostMatrixLibrary:
             numerator = np.dot(ps, es)
             denominator = np.dot(es, es)
 
-            ratio = numerator / denominator
             if denominator == 0.0:
                 return 999999999.0
             else:
+                ratio = numerator / denominator
                 return np.linalg.norm(ps - ratio * es)
 
         max_distance = 0.0
