@@ -1,11 +1,13 @@
-from typing import List
+from typing import List, Tuple
 import multiprocessing as mp
 from multiprocessing.dummy import Pool as ThreadPool
 
 
-from src.animation.timeline import Timeline
+from src.animation.timeline import CreateTimeline, Timeline
+from src.animation.time import Time
 from src.animation.animation import Animation
 from src.selection.cost_matrix_operation import CostMatrixOperation
+from src.utils import IO, TransformStringsInList
 
 
 class CostMatrix:
@@ -15,7 +17,6 @@ class CostMatrix:
 
         self.matrix = {}
         self._setup_matrix()
-        self._execute_operation()
 
     def _setup_matrix(self) -> None:
         for timeline in self.animation.timeline.permutations():
@@ -66,6 +67,35 @@ class CostMatrix:
         e = int(timeline.end.time)
         self.matrix[s][e] = (error, index)
 
+    @staticmethod
+    def _get_data(filepath) -> Tuple[List[Timeline], List[float], List[int]]:
+        csv = IO.read_csv_content_as_list_of_lists(filepath)
 
+        data: List[List[float]] = [TransformStringsInList.as_floats(row) for row in csv[1:]]
 
+        timelines = []
+        values = []
+        indices = []
+        for row in data:
+            s = int(row[0])
+            e = int(row[1])
+            timelines.append(CreateTimeline.from_start_end(Time(s), Time(e)))
+            values.append(float(row[2]))
+            indices.append(int(row[3]))
+
+        return timelines, values, indices
+
+    @staticmethod
+    def from_csv(filepath: str, animation: Animation, operation: CostMatrixOperation):
+        timelines, values, indices = CostMatrix._get_data(filepath)
+        cost_matrix: CostMatrix = CostMatrix(animation, operation)
+        for (timeline, value, index) in zip(timelines, values, indices):
+            cost_matrix.set(timeline, value, index)
+        return cost_matrix
+
+    @staticmethod
+    def from_animation(animation: Animation, operation: CostMatrixOperation):
+        cost_matrix: CostMatrix = CostMatrix(animation, operation)
+        cost_matrix._execute_operation()
+        return cost_matrix
 

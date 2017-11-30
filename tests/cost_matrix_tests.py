@@ -19,7 +19,7 @@ class TestCostMatrix(unittest.TestCase):
 
         anim = CreateAnimation.from_csv("tests/data/run-animation.csv", Character, Joint)
         op = CostMatrixOperation(CostMatrixLibrary.max_point_to_line_distance)
-        cost_matrix = CostMatrix(anim, op)
+        cost_matrix = CostMatrix.from_animation(anim, op)
         csv_from_cost_matrix_object = cost_matrix.as_csv()
 
         # Check shape is equal (same number of rows and columns)
