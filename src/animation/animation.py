@@ -62,7 +62,7 @@ class Animation:
         values = []
         for row in data:
             assert dimensions[0] == "time"
-            times.append(row[0])
+            times.append(int(row[0]))
             values.append([Value(name, value) for (name, value) in zip(dimensions[1:], row[1:])])
 
         return times, values
