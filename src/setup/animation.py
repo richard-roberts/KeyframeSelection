@@ -59,7 +59,7 @@ class CreateCharacterAnimation:
     def from_csv(filepath: str) -> Animation:
         times, values = CreateCharacterAnimation._get_data(filepath)
 
-        timeline = CreateTimeline.from_times(times, 120)
+        timeline = CreateTimeline.from_times(times)
 
         frames: List[Frame] = []
         for (time, value) in zip(times, values):

@@ -4,10 +4,9 @@ from src.animation.time import Time
 
 
 class Timeline:
-    def __init__(self, start: Time, end: Time, fps: int):
+    def __init__(self, start: Time, end: Time):
         self.start = start
         self.end = end
-        self.fps = fps
 
     def as_range(self, increment: Time):
         times: List[Time] = []
@@ -31,14 +30,18 @@ class Timeline:
         e = int(self.end.time)
         for s in range(s, e):
             for e in range(s + 1, e + 1):
-                timeline: Timeline = Timeline(Time(s), Time(e), self.fps)
+                timeline: Timeline = Timeline(Time(s), Time(e))
                 timelines.append(timeline)
         return timelines
 
 
 class CreateTimeline:
     @staticmethod
-    def from_times(times: List[Time], fps: int) -> Timeline:
+    def from_times(times: List[Time]) -> Timeline:
         start = times[0]
         end = times[-1]
-        return Timeline(start, end, fps)
+        return Timeline(start, end)
+
+    @staticmethod
+    def from_start_end(start: Time, end: Time) -> Timeline:
+        return Timeline(start, end)
