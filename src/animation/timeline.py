@@ -8,6 +8,12 @@ class Timeline:
         self.start = start
         self.end = end
 
+    def time_to_index(self, time: Time) -> int:
+        return time - self.start
+
+    def index_to_time(self, index: int) -> Time:
+        return index + self.start
+
     def as_range(self) -> List[Time]:
         return list(range(self.start, self.end + 1))
 
