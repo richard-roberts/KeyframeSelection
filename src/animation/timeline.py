@@ -1,6 +1,6 @@
 from typing import List
 
-from src.animation.time import Time
+from src.types import Time
 
 
 class Timeline:
@@ -8,29 +8,21 @@ class Timeline:
         self.start = start
         self.end = end
 
-    def as_range(self, increment: Time):
-        times: List[Time] = []
-
-        current = self.start
-        while current < self.end:
-            times.append(current)
-            current = current + increment
-        times.append(self.end)
-
-        return times
+    def as_range(self) -> List[Time]:
+        return list(range(self.start, self.end + 1))
 
     def number_of_frames(self) -> int:
-        n_frames = self.end.time - self.start.time + 1
+        n_frames = self.end - self.start + 1
         assert int(n_frames) == n_frames
         return int(n_frames)
 
     def permutations(self):
         timelines = []
-        s = int(self.start.time)
-        e = int(self.end.time)
+        s = int(self.start)
+        e = int(self.end)
         for s in range(s, e):
             for e in range(s + 1, e + 1):
-                timeline: Timeline = Timeline(Time(s), Time(e))
+                timeline: Timeline = Timeline(s, e)
                 timelines.append(timeline)
         return timelines
 

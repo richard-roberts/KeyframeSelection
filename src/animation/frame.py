@@ -1,7 +1,7 @@
 from typing import List
 
 from src.scene.things.thing import Thing
-from src.animation.time import Time
+from src.types import Time
 
 
 class Frame:
@@ -10,7 +10,7 @@ class Frame:
         self.things = things
 
     def as_point(self):
-        point = [self.time.time]
+        point = [self.time]
         for thing in self.things:
             point += thing.as_point()
         return point

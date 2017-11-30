@@ -6,7 +6,7 @@ from src.scene.coordinates.joint import Joint
 from src.scene.things.thing import Thing
 from src.scene.things.character import Character
 from src.animation.frame import Frame
-from src.animation.time import Time
+from src.types import Time
 from src.animation.timeline import Timeline
 from src.utils import IO, TransformStringsInList, TransformFloatsInList
 
@@ -17,9 +17,9 @@ class Animation:
         self.frames = frames
 
     def get_frames(self, timeline: Timeline):
-        anim_start_time = int(self.timeline.start.time)
-        s = int(timeline.start.time)
-        e = int(timeline.end.time)
+        anim_start_time = int(self.timeline.start)
+        s = int(timeline.start)
+        e = int(timeline.end)
         return [self.frames[i - anim_start_time] for i in range(s, e + 1)]
 
     def dimensions(self) -> List[str]:
@@ -33,7 +33,7 @@ class Animation:
     def value_matrix(self) -> List[List[float]]:
         matrix = []
 
-        times = self.timeline.as_range(Time(1.0))
+        times = self.timeline.as_range()
         for (time, frame) in zip(times, self.frames):
             values: List[Value] = []
             first_thing: Thing = frame.things[0]
@@ -41,7 +41,7 @@ class Animation:
                 values += coordinate.values
 
             row = [item.value for item in values]
-            row_with_time = [time.time] + row
+            row_with_time = [time] + row
             matrix.append(row_with_time)
 
         return matrix
@@ -62,7 +62,7 @@ class Animation:
         values = []
         for row in data:
             assert dimensions[0] == "time"
-            times.append(Time(row[0]))
+            times.append(row[0])
             values.append([Value(name, value) for (name, value) in zip(dimensions[1:], row[1:])])
 
         return times, values
