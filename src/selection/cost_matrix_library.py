@@ -22,8 +22,12 @@ class CostMatrixLibrary:
                 return np.linalg.norm(ps - ratio * es)
 
         max_distance = 0.0
-        for p in points:
+        index_of_max_distance = -1
+
+        for i, p in enumerate(points):
             curr_distance = distance_between_line_and_point(p)
             if curr_distance > max_distance:
                 max_distance = curr_distance
-        return max_distance
+                index_of_max_distance = i
+
+        return max_distance, index_of_max_distance
