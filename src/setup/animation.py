@@ -62,7 +62,7 @@ class CreateAnimation:
         frames: List[Frame] = []
         for (time, value) in zip(times, values):
             thing = CreateAnimation._construct_thing_from_values(thing_class, coordinate_class, value)
-            frame = Frame([thing])
+            frame = Frame(time, [thing])
             frames.append(frame)
 
         animation = Animation(timeline, frames)
