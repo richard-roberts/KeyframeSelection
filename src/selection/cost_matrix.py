@@ -56,17 +56,5 @@ class CostMatrix:
         return csv
 
 
-from src.setup.animation import CreateAnimation
-from src.selection.cost_matrix_library import CostMatrixLibrary
-from src.scene.coordinates.joint import Joint
-from src.scene.things.character import Character
-from src.utils import IO
 
-def exe():
-    anim = CreateAnimation.from_csv("tests/data/run.csv", Character, Joint)
-    op = CostMatrixOperation(CostMatrixLibrary.max_point_to_line_distance)
-    cm = CostMatrix(anim, op)
-    IO.write_list_of_lists_as_csv("tests/out/eval.csv", cm.as_csv())
 
-if __name__ == "__main__":
-    exe()
