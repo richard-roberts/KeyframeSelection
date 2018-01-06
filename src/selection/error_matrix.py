@@ -74,6 +74,10 @@ class ErrorMatrix:
         e = int(timeline.end)
         self.matrix[s][e] = (error, index)
 
+    def save(self, directory: str):
+        IO.write_list_of_lists_as_csv("%s/%s-evaluation.csv" % (directory, self.animation.name), self.as_csv())
+
+
     @staticmethod
     def _get_data(filepath) -> Tuple[List[Timeline], List[float], List[int]]:
         csv = IO.read_csv_content_as_list_of_lists(filepath)

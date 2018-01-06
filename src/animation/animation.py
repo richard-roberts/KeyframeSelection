@@ -12,7 +12,8 @@ from src.utils import IO, TransformStringsInList, TransformFloatsInList
 
 
 class Animation:
-    def __init__(self, timeline: Timeline, frames: List[Frame]):
+    def __init__(self, name: str, timeline: Timeline, frames: List[Frame]):
+        self.name = name
         self.timeline = timeline
         self.frames = frames
 
@@ -95,6 +96,7 @@ class Animation:
 
     @staticmethod
     def character_animation_from_csv(filepath: str):
+        name = filepath.split("/")[-1].split(".csv")[0]
         times, values = Animation._get_data(filepath)
 
         timeline = Timeline.from_times(times)
@@ -105,5 +107,5 @@ class Animation:
             frame = Frame(time, [thing])
             frames.append(frame)
 
-        animation = Animation(timeline, frames)
+        animation = Animation(name, timeline, frames)
         return animation
