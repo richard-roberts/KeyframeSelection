@@ -9,7 +9,7 @@ from src.animation.animation import Animation
 class TestAnimation(unittest.TestCase):
 
     def test_setup(self):
-        filepath: str = "tests/data/walk-animation.csv"
+        filepath: str = "AnimationData/animation/walk.csv"
         animation = Animation.character_animation_from_csv(filepath)
         csv_from_animation_object: List[List[str]] = animation.as_csv()
         csv_from_csv_file_read: List[List[str]] = IO.read_csv_content_as_list_of_lists(filepath)
