@@ -1,3 +1,5 @@
+import numpy as np
+
 from typing import List, Tuple
 
 from src.animation.frame import Frame
@@ -23,6 +25,17 @@ class Animation:
         e = int(timeline.end)
         return [self.frames[i - anim_start_time] for i in range(s, e + 1)]
 
+    def get_curve_for_dimension(self, name: str):
+        curve: List[np.array] = []
+
+        for index, frame in enumerate(self.frames):
+            point = frame.as_point()
+            value = point[self.get_index_of_dimension(name)]
+            point_for_curve = np.array([self.timeline.start + index, value])
+            curve.append(point_for_curve)
+
+        return curve
+
     def dimensions(self) -> List[str]:
         dimensions = ["time"]
         first_thing: Thing = self.frames[0].things[0]
@@ -30,6 +43,21 @@ class Animation:
             for value in coordinate.values:
                 dimensions.append(value.name)
         return dimensions
+
+    def get_index_of_dimension(self, name: str) -> int:
+        assert name != "time"
+
+        first_thing: Thing = self.frames[0].things[0]
+
+        i: int = 1
+        for coordinate in first_thing.coordinates:
+            for value in coordinate.values:
+                if value.name == name:
+                    return i
+                else:
+                    i += 1
+
+        return i
 
     def value_matrix(self) -> List[List[float]]:
         matrix = []
