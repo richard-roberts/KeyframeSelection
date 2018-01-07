@@ -1,12 +1,11 @@
-from typing import List, Tuple
-import multiprocessing as mp
 from multiprocessing.dummy import Pool as ThreadPool
+from typing import List, Tuple
 
-
-from src.animation.timeline import Timeline
-from src.types import Time
 from src.animation.animation import Animation
+from src.animation.timeline import Timeline
 from src.selection.error_matrix_operation import ErrorMatrixOperation
+from src.selection.selection import Selection
+from src.types import Time
 from src.utils import IO, TransformStringsInList
 
 
@@ -47,6 +46,11 @@ class ErrorMatrix:
         e = timeline.end
         return self.matrix[s][e][0]
 
+    def value_of_max_error_for_selection(self, selection: Selection) -> float:
+        pairs: List[Tuple[Time, Time]] = selection.get_pairs()
+        timelines = [Timeline.from_start_end(a, b) for (a, b) in pairs]
+        return max([self.value_of_max_error(timeline) for timeline in timelines])
+
     def index_of_max_error(self, timeline: Timeline) -> float:
         assert self.matrix != {}
         s = timeline.start
@@ -58,7 +62,9 @@ class ErrorMatrix:
         for timeline in self.animation.timeline.permutations():
             s = timeline.start
             e = timeline.end
-            row = ["%d" % s, "%d" % e, "%2.8f" % self.value_of_max_error(timeline), "%d" % self.index_of_max_error(timeline)]
+            row = ["%d" % s, "%d" % e,
+                   "%2.8f" % self.value_of_max_error(timeline),
+                   "%d" % self.index_of_max_error(timeline)]
             csv.append(row)
         return csv
 
@@ -66,6 +72,9 @@ class ErrorMatrix:
         s = int(timeline.start)
         e = int(timeline.end)
         self.matrix[s][e] = (error, index)
+
+    def save(self, directory: str):
+        IO.write_list_of_lists_as_csv("%s/%s-evaluation.csv" % (directory, self.animation.name), self.as_csv())
 
     @staticmethod
     def _get_data(filepath) -> Tuple[List[Timeline], List[float], List[int]]:
@@ -98,4 +107,3 @@ class ErrorMatrix:
         error_matrix: ErrorMatrix = ErrorMatrix(animation, operation)
         error_matrix._execute_operation()
         return error_matrix
-

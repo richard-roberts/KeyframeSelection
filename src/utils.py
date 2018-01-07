@@ -40,9 +40,9 @@ class IO:
         f = IO.open_file_to_write(filepath)
 
         data_str = ""
-        row_size = len(data[0])
-        row_str = "%s," * (row_size - 1) + "%s\n"
         for row in data:
+            row_size = len(row)
+            row_str = "%s," * (row_size - 1) + "%s\n"
             data_str += row_str % tuple(row)
 
         f.write(data_str)
@@ -57,5 +57,5 @@ class TransformStringsInList:
 
 class TransformFloatsInList:
     @staticmethod
-    def asStrings(data: List[float]) -> List[str]:
+    def as_strings(data: List[float]) -> List[str]:
         return [str(value) for value in data]

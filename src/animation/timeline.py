@@ -26,9 +26,9 @@ class Timeline:
         timelines = []
         s = int(self.start)
         e = int(self.end)
-        for s in range(s, e):
-            for e in range(s + 1, e + 1):
-                timeline: Timeline = Timeline(s, e)
+        for _s in range(s, e):
+            for _e in range(_s + 1, e + 1):
+                timeline: Timeline = Timeline(_s, _e)
                 timelines.append(timeline)
         return timelines
 

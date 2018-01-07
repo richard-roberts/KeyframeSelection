@@ -1,18 +1,19 @@
 from typing import List, Tuple
 
-from src.scene.coordinates.value import Value
+from src.animation.frame import Frame
+from src.animation.timeline import Timeline
 from src.scene.coordinates.coordinate import Coordinate
 from src.scene.coordinates.joint import Joint
-from src.scene.things.thing import Thing
+from src.scene.coordinates.value import Value
 from src.scene.things.character import Character
-from src.animation.frame import Frame
+from src.scene.things.thing import Thing
 from src.types import Time
-from src.animation.timeline import Timeline
 from src.utils import IO, TransformStringsInList, TransformFloatsInList
 
 
 class Animation:
-    def __init__(self, timeline: Timeline, frames: List[Frame]):
+    def __init__(self, name: str, timeline: Timeline, frames: List[Frame]):
+        self.name = name
         self.timeline = timeline
         self.frames = frames
 
@@ -48,7 +49,7 @@ class Animation:
 
     def as_csv(self) -> List[List[str]]:
         dimensions: List[str] = self.dimensions()
-        data: List[List[str]] = [TransformFloatsInList.asStrings(row) for row in self.value_matrix()]
+        data: List[List[str]] = [TransformFloatsInList.as_strings(row) for row in self.value_matrix()]
         return [dimensions] + data
 
     @staticmethod
@@ -95,6 +96,7 @@ class Animation:
 
     @staticmethod
     def character_animation_from_csv(filepath: str):
+        name = filepath.split("/")[-1].split(".csv")[0]
         times, values = Animation._get_data(filepath)
 
         timeline = Timeline.from_times(times)
@@ -105,5 +107,5 @@ class Animation:
             frame = Frame(time, [thing])
             frames.append(frame)
 
-        animation = Animation(timeline, frames)
+        animation = Animation(name, timeline, frames)
         return animation

@@ -1,21 +1,18 @@
-from typing import List
-
 import unittest
 
-from src.utils import IO
 from src.animation.animation import Animation
 from src.selection.error_matrix import ErrorMatrix
-from src.selection.error_matrix_operation import ErrorMatrixOperation
 from src.selection.error_matrix_library import ErrorMatrixLibrary
+from src.selection.error_matrix_operation import ErrorMatrixOperation
+from src.utils import IO
 
 
 class TestErrorMatrix(unittest.TestCase):
-
     def test_setup(self):
-        csv_filepath = "tests/data/run-evaluation.csv"
+        csv_filepath = "AnimationData/evaluation/run.csv"
         csv_from_csv_file_read = IO.read_csv_content_as_list_of_lists(csv_filepath)
 
-        anim = Animation.character_animation_from_csv("tests/data/run-animation.csv")
+        anim = Animation.character_animation_from_csv("AnimationData/animation/run.csv")
         op = ErrorMatrixOperation(ErrorMatrixLibrary.max_point_to_line_distance)
         error_matrix = ErrorMatrix.from_animation(anim, op)
         csv_from_error_matrix_object = error_matrix.as_csv()
