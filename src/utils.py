@@ -2,6 +2,8 @@ import csv
 from _io import TextIOWrapper
 from typing import List
 
+import numpy as np
+
 
 class IO:
     @staticmethod
@@ -59,3 +61,25 @@ class TransformFloatsInList:
     @staticmethod
     def as_strings(data: List[float]) -> List[str]:
         return [str(value) for value in data]
+
+
+class Math:
+    @staticmethod
+    def finite_differences(points):
+        tangents = []
+        n = len(points)
+
+        def get(i):
+            if i == 0:
+                return points[1] - points[0]
+            elif i == n - 1:
+                return points[-2] - points[-1]
+            else:
+                return points[i] - points[i+1]
+
+        for i in range(n):
+            t = get(i)
+            t = t / np.linalg.norm(t)
+            tangents.append(t)
+
+        return tangents
