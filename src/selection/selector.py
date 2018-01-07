@@ -1,3 +1,4 @@
+import os
 import time
 
 from src.animation.animation import Animation
@@ -21,6 +22,8 @@ class Selector:
         raise NotImplementedError
 
     def execute(self, iterations):
+        assert self.error_matrix is not None
+
         for _ in range(iterations):
             start = time.time()
             self.compute()
@@ -55,3 +58,17 @@ class Selector:
     def save(self, directory: str, include_timer: bool):
         IO.write_list_of_lists_as_csv("%s/%s-%s.csv" % (directory, self.animation.name, self.name),
                                       self.as_csv(include_timer))
+
+    @staticmethod
+    def from_file(filepath: str, animation: Animation):
+        csv = IO.read_csv_content_as_list_of_lists(filepath)
+
+        selector = Selector(os.path.basename(filepath), animation, None)
+        for row in csv[1:]:
+            selected = [int(v) for v in row[2:]]
+            selection: Selection = Selection.first_selection(animation.timeline)
+            selection.add(*selected[1:-1])
+
+            selector.selections.append(selection)
+
+        return selector
