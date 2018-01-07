@@ -1,11 +1,10 @@
 from typing import List, Tuple
 
-from src.types import Time
 from src.animation.timeline import Timeline
+from src.types import Time
 
 
 class Selection:
-
     def __init__(self, timeline: Timeline) -> None:
         self.timeline = timeline
         self.keyframes: List[bool] = [True] + [False for _ in range(timeline.start + 1, timeline.end)] + [True]

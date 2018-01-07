@@ -1,18 +1,16 @@
 import os
-
 import unittest
 
-from src.utils import IO
 from src.animation.animation import Animation
 from src.selection.error_matrix import ErrorMatrix
-from src.selection.error_matrix_operation import ErrorMatrixOperation
 from src.selection.error_matrix_library import ErrorMatrixLibrary
+from src.selection.error_matrix_operation import ErrorMatrixOperation
 from src.selection.greedy import Greedy
 from src.selection.salient import Salient
+from src.utils import IO
 
 
 class TestSelectors(unittest.TestCase):
-
     def get_error_matrix(self, filepath, anim):
         op = ErrorMatrixOperation(ErrorMatrixLibrary.max_point_to_line_distance)
 

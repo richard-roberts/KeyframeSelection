@@ -2,7 +2,6 @@ import numpy as np
 
 
 class ErrorMatrixLibrary:
-
     @staticmethod
     def max_point_to_line_distance(points):
 

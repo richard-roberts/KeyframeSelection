@@ -6,7 +6,6 @@ from src.animation.frame import Frame
 
 
 class ErrorMatrixOperation:
-
     def __init__(self, objective_function: Callable):
         self.objective_function = objective_function
 

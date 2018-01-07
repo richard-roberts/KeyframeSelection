@@ -1,15 +1,14 @@
 from typing import Dict, Tuple
 
-from src.types import Time
-from src.animation.timeline import Timeline
 from src.animation.animation import Animation
+from src.animation.timeline import Timeline
 from src.selection.error_matrix import ErrorMatrix
 from src.selection.selection import Selection
 from src.selection.selector import Selector
+from src.types import Time
 
 
 class Optimal:
-
     def __init__(self):
         self.selections: Dict[int, Tuple[Selection, float]] = {}
 
@@ -21,7 +20,6 @@ class Optimal:
 
 
 class Salient(Selector):
-
     def __init__(self, name: str, animation: Animation, error_matrix: ErrorMatrix):
         super().__init__(name, animation, error_matrix)
 

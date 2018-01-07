@@ -1,12 +1,11 @@
-from src.animation.timeline import Timeline
 from src.animation.animation import Animation
+from src.animation.timeline import Timeline
 from src.selection.error_matrix import ErrorMatrix
 from src.selection.selection import Selection
 from src.selection.selector import Selector
 
 
 class Greedy(Selector):
-
     def __init__(self, name: str, animation: Animation, error_matrix: ErrorMatrix):
         super().__init__(name, animation, error_matrix)
 

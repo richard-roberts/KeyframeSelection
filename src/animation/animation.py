@@ -1,13 +1,13 @@
 from typing import List, Tuple
 
-from src.scene.coordinates.value import Value
+from src.animation.frame import Frame
+from src.animation.timeline import Timeline
 from src.scene.coordinates.coordinate import Coordinate
 from src.scene.coordinates.joint import Joint
-from src.scene.things.thing import Thing
+from src.scene.coordinates.value import Value
 from src.scene.things.character import Character
-from src.animation.frame import Frame
+from src.scene.things.thing import Thing
 from src.types import Time
-from src.animation.timeline import Timeline
 from src.utils import IO, TransformStringsInList, TransformFloatsInList
 
 

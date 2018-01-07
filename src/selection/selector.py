@@ -47,7 +47,7 @@ class Selector:
             content.append(row)
 
         for i in range(max_keyframes):
-            keyframe_name = "k%d" % (i+1)
+            keyframe_name = "k%d" % (i + 1)
             header.append(keyframe_name)
 
         return [header] + content
