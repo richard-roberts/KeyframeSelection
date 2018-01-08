@@ -1,3 +1,4 @@
+import os
 import copy
 from typing import List
 
@@ -55,3 +56,15 @@ class Interpolator(object):
 
     def save(self, directory: str):
         IO.write_list_of_lists_as_csv("%s/%s-%s.csv" % (directory, self.animation.name, self.name), self.as_csv())
+
+    @staticmethod
+    def from_file(filepath: str, animation: Animation, selection: Selection, dimension: str):
+        csv = IO.read_csv_content_as_list_of_lists(filepath)
+
+        interpolator = Interpolator(os.path.basename(filepath), animation, selection, dimension)
+        for index, row in enumerate(csv[1:]):
+            curve: Curve = interpolator.curves[index]
+            curve.set_b(row[2], row[3])
+            curve.set_c(row[4], row[5])
+
+        return interpolator
