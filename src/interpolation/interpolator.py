@@ -1,5 +1,5 @@
-import os
 import copy
+import os
 from typing import List
 
 from src.animation.animation import Animation
