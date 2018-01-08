@@ -14,7 +14,7 @@ class Energy:
         total_e = 0
 
         for curve in curves:
-            n = curve.number_of_frames_covered()
+            n = 10
             interps = curve.sample_uniform(n)
 
             for interp in interps:
@@ -29,7 +29,7 @@ class Energy:
         jacobian = [0.0 for _ in range(4 * len(curves))]
 
         for i, curve in enumerate(curves):
-            n = curve.number_of_frames_covered()
+            n = 10
             interps = curve.sample_uniform(n)
 
             us = Curve.uniform_sample_set(n)
