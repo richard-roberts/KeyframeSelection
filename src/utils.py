@@ -83,3 +83,31 @@ class Math:
             tangents.append(t)
 
         return tangents
+
+    @staticmethod
+    def linear_interpolation(a, b, t):
+        return a + (b - a) * t
+
+    @staticmethod
+    def percentage_between(a, b, p):
+        return (p - a) / (b - a)
+
+    @staticmethod
+    def sample_y_at_x_in_polyline(points, x: float):
+        if int(x) == points[-1][0]:
+            return points[-1][1]
+
+        x_diff = x - points[0][0]
+        ax, bx = int(np.floor(x_diff)), int(np.floor(x_diff)) + 1
+        ay, by = points[ax][1], points[bx][1]
+        return Math.linear_interpolation(ay, by, Math.percentage_between(ax, bx, x))
+
+    @staticmethod
+    def sample_y_at_x_in_polyline_d(points, x: float):
+        if int(x) == points[-1][0]:
+            return 0
+
+        x_diff = x - points[0][0]
+        ax, bx = int(np.floor(x_diff)), int(np.floor(x_diff)) + 1
+        ay, by = points[ax][1], points[bx][1]
+        return (by - ay) / (bx - ax)
