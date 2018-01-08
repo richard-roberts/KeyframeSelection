@@ -1,28 +1,15 @@
-from typing import List
-
-import unittest
-
-from src.animation.animation import Animation
 from src.selection.selection import Selection
-from src.selection.selector import Selector
 from src.interpolation.schneider import Schneider
+from tests.csv_test import CsvTest
 
 
-class TestInterpolator(unittest.TestCase):
+class TestInterpolators(CsvTest):
 
     def test_schneider(self):
-        filepath: str = "AnimationData/animation/quadbot.csv"
-        animation: Animation = Animation.character_animation_from_csv(filepath)
-        selector: Selector = Selector.from_file("AnimationData/selection/quadbot-Salient.csv", animation)
-
-        selection: Selection = selector.selections[6]
-        dimensions: List[str] = animation.dimensions()
-
-        dimension: str = dimensions[1]
-        interpolator = Schneider(animation, selection, dimension)
-
+        self.load_animation("quadbot")
+        self.load_selector("quadbot-Salient")
+        selection: Selection = self.selector.selections[6]
+        dimension: str = self.animation.dimensions()[1]
+        interpolator = Schneider("Schneider", self.animation, selection, dimension)
         interpolator.execute()
-
-        print("\n\n")
-        for curve in interpolator.get_curves():
-            print(curve)
+        self.compare_csv_output_to_file(interpolator.as_csv(), "interpolation", "quadbot-Schneider")
