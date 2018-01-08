@@ -1,3 +1,6 @@
 [submodule "AnimationData"]
 	path = AnimationData
 	url = https://github.com/richard-roberts/AnimationData.git
+[submodule "PyUtils"]
+	path = PyUtils
+	url = https://github.com/richard-roberts/PyUtils.git
