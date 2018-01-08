@@ -100,7 +100,7 @@ class Math:
         x_diff = x - points[0][0]
         ax, bx = int(np.floor(x_diff)), int(np.floor(x_diff)) + 1
         ay, by = points[ax][1], points[bx][1]
-        return Math.linear_interpolation(ay, by, Math.percentage_between(ax, bx, x))
+        return Math.linear_interpolation(ay, by, Math.percentage_between(ax, bx, x_diff))
 
     @staticmethod
     def sample_y_at_x_in_polyline_d(points, x: float):
