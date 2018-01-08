@@ -42,6 +42,9 @@ class Selection:
     def n_keyframes(self) -> int:
         return len(self.get())
 
+    def as_zero_indexed_integers(self) -> List[int]:
+        return [i - self.timeline.start for i in self.get()]
+
     def as_binary(self) -> List[int]:
         return [1 if value else 0 for value in self.keyframes]
 
