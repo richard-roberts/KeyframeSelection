@@ -1,14 +1,13 @@
-from typing import List
 import copy
+from typing import List
 
 from src.animation.animation import Animation
-from src.selection.selection import Selection
 from src.interpolation.curve import Curve
+from src.selection.selection import Selection
 from src.utils import IO, Math
 
 
 class Interpolator(object):
-
     def __init__(self, name: str, animation: Animation, selection: Selection, dimension: str):
         self.name = name
         self.animation = animation

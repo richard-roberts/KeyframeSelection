@@ -4,7 +4,6 @@ from tests.csv_test import CsvTest
 
 
 class TestSelectors(CsvTest):
-
     def test_salient(self):
         self.load_animation("quadbot")
         self.load_error_matrix()

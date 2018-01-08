@@ -2,7 +2,6 @@ from src.interpolation.interpolator import Interpolator
 
 
 class Schneider(Interpolator):
-
     def execute(self):
         optimization_iterations = 10
         resolution = 100

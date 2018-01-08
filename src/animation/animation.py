@@ -1,6 +1,6 @@
-import numpy as np
-
 from typing import List, Tuple
+
+import numpy as np
 
 from src.animation.frame import Frame
 from src.animation.timeline import Timeline

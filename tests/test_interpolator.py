@@ -1,10 +1,9 @@
-from src.selection.selection import Selection
 from src.interpolation.schneider import Schneider
+from src.selection.selection import Selection
 from tests.csv_test import CsvTest
 
 
 class TestInterpolators(CsvTest):
-
     def test_schneider(self):
         self.load_animation("quadbot")
         self.load_selector("quadbot-Salient")

@@ -75,7 +75,7 @@ class Math:
             elif i == n - 1:
                 return points[-2] - points[-1]
             else:
-                return points[i] - points[i+1]
+                return points[i] - points[i + 1]
 
         for i in range(n):
             t = get(i)

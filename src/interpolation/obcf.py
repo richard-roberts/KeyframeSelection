@@ -3,13 +3,12 @@ from typing import List
 import numpy as np
 from scipy.optimize import minimize
 
-from src.utils import Math
 from src.interpolation.curve import Curve
 from src.interpolation.interpolator import Interpolator
+from src.utils import Math
 
 
 class Energy:
-
     @staticmethod
     def accuracy(original_curve, curves: List[Curve]):
         total_e = 0
@@ -101,10 +100,10 @@ class Energy:
                 angle = v1 - v2
 
             abs_angle = np.sqrt(np.power(angle, 2))
-            j.append( (2 * (dy - y1) * angle * (abs_angle - np.pi)) / (abs_angle * sq_xy))
+            j.append((2 * (dy - y1) * angle * (abs_angle - np.pi)) / (abs_angle * sq_xy))
             j.append(-(2 * (dx - x1) * angle * (abs_angle - np.pi)) / (abs_angle * sq_xy))
             j.append(-(2 * (dy - y2) * angle * (abs_angle - np.pi)) / (abs_angle * sq_zw))
-            j.append( (2 * (dx - x2) * angle * (abs_angle - np.pi)) / (abs_angle * sq_zw))
+            j.append((2 * (dx - x2) * angle * (abs_angle - np.pi)) / (abs_angle * sq_zw))
 
         j.append(0)
         j.append(0)
