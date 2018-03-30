@@ -1,8 +1,8 @@
 import os
 import time
 
+from src.analysis.error_matrix import ErrorMatrix
 from src.animation.animation import Animation
-from src.selection.error_matrix import ErrorMatrix
 from src.selection.selection import Selection
 from src.utils import IO, TransformFloatsInList
 

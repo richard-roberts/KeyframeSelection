@@ -1,6 +1,6 @@
-from src.selection.error_matrix import ErrorMatrix
-from src.selection.error_matrix_library import ErrorMatrixLibrary
-from src.selection.error_matrix_operation import ErrorMatrixOperation
+from src.analysis.error_matrix import ErrorMatrix
+from src.analysis.error_matrix_library import ErrorMatrixLibrary
+from src.analysis.error_matrix_operation import ErrorMatrixOperation
 from tests.csv_test import CsvTest
 
 

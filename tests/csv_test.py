@@ -1,9 +1,9 @@
 import unittest
 
+from src.analysis.error_matrix import ErrorMatrix
+from src.analysis.error_matrix_library import ErrorMatrixLibrary
+from src.analysis.error_matrix_operation import ErrorMatrixOperation
 from src.animation.animation import Animation
-from src.selection.error_matrix import ErrorMatrix
-from src.selection.error_matrix_library import ErrorMatrixLibrary
-from src.selection.error_matrix_operation import ErrorMatrixOperation
 from src.selection.selector import Selector
 from src.utils import IO
 

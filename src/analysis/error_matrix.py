@@ -1,9 +1,9 @@
 from multiprocessing.dummy import Pool as ThreadPool
 from typing import List, Tuple
 
+from src.analysis.error_matrix_operation import ErrorMatrixOperation
 from src.animation.animation import Animation
 from src.animation.timeline import Timeline
-from src.selection.error_matrix_operation import ErrorMatrixOperation
 from src.selection.selection import Selection
 from src.types import Time
 from src.utils import IO, TransformStringsInList
