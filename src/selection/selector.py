@@ -1,17 +1,17 @@
 import os
 import time
 
+from src.analysis.error_table import ErrorTable
 from src.animation.animation import Animation
-from src.selection.error_matrix import ErrorMatrix
 from src.selection.selection import Selection
 from src.utils import IO, TransformFloatsInList
 
 
 class Selector:
-    def __init__(self, name: str, animation: Animation, error_matrix: ErrorMatrix):
+    def __init__(self, name: str, animation: Animation, error_table: ErrorTable):
         self.name = name
         self.animation = animation
-        self.error_matrix = error_matrix
+        self.error_table = error_table
         self.selections = []
         self.times = []
 
@@ -21,8 +21,10 @@ class Selector:
     def compute(self):
         raise NotImplementedError
 
-    def execute(self, iterations):
-        assert self.error_matrix is not None
+    def execute(self, iterations=-1):
+        if iterations == -1:
+            iterations = self.animation.get_n_frames() - 2
+        assert self.error_table is not None
 
         for _ in range(iterations):
             start = time.time()
@@ -39,7 +41,7 @@ class Selector:
         max_keyframes = -1
         content = []
         for (exe_time, selection) in zip(self.times, self.selections):
-            error = self.error_matrix.value_of_max_error_for_selection(selection)
+            error = self.error_table.value_of_max_error_for_selection(selection)
             keyframes = selection.get()
             if len(keyframes) > max_keyframes:
                 max_keyframes = len(keyframes)

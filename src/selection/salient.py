@@ -1,8 +1,8 @@
 from typing import Dict, Tuple
 
+from src.analysis.error_table import ErrorTable
 from src.animation.animation import Animation
 from src.animation.timeline import Timeline
-from src.selection.error_matrix import ErrorMatrix
 from src.selection.selection import Selection
 from src.selection.selector import Selector
 from src.types import Time
@@ -20,14 +20,14 @@ class Optimal:
 
 
 class Salient(Selector):
-    def __init__(self, name: str, animation: Animation, error_matrix: ErrorMatrix):
-        super().__init__(name, animation, error_matrix)
+    def __init__(self, name: str, animation: Animation, error_table: ErrorTable):
+        super().__init__(name, animation, error_table)
 
         self.last_optimal = Optimal()
         for end in self.animation.timeline.as_range()[1:]:
             timeline = Timeline.from_start_end(self.animation.timeline.start, end)
             selection_to_end = Selection.first_selection(timeline)
-            error = self.error_matrix.value_of_max_error(timeline)
+            error = self.error_table.value_of_max_error(timeline)
             self.last_optimal.add(selection_to_end, error)
 
     def compute(self):
@@ -41,7 +41,7 @@ class Salient(Selector):
             for k in range(first, last + 1):
                 time = Time(k)
                 selection_start_to_k, error_start_to_k = curr_optimal.get(time)
-                error_k_to_end = self.error_matrix.value_of_max_error(Timeline.from_start_end(time, end))
+                error_k_to_end = self.error_table.value_of_max_error(Timeline.from_start_end(time, end))
                 error_combined = max(error_start_to_k, error_k_to_end)
                 if min_error > error_combined:
                     min_error = error_combined
