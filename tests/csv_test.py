@@ -1,8 +1,8 @@
 import unittest
 
-from src.analysis.error_matrix import ErrorMatrix
-from src.analysis.error_matrix_library import ErrorMatrixLibrary
-from src.analysis.error_matrix_operation import ErrorMatrixOperation
+from src.analysis.error_table import ErrorTable
+from src.analysis.error_table_library import ErrorTableLibrary
+from src.analysis.error_table_operation import ErrorTableOperation
 from src.animation.animation import Animation
 from src.selection.selector import Selector
 from src.utils import IO
@@ -14,17 +14,17 @@ class CsvTest(unittest.TestCase):
     def __init__(self, method_name):
         super().__init__(method_name)
         self.animation: Animation = None
-        self.error_matrix: ErrorMatrix = None
+        self.error_table: ErrorTable = None
         self.selector: Selector = None
 
     def load_animation(self, filename):
         filepath = "%s/animation/%s.csv" % (CsvTest.directory, filename)
         self.animation = Animation.character_animation_from_csv(filepath)
 
-    def load_error_matrix(self):
+    def load_error_table(self):
         filepath = "%s/evaluation/%s.csv" % (CsvTest.directory, self.animation.name)
-        op = ErrorMatrixOperation(ErrorMatrixLibrary.max_point_to_line_distance)
-        self.error_matrix = ErrorMatrix.from_csv(filepath, self.animation, op)
+        op = ErrorTableOperation(ErrorTableLibrary.max_point_to_line_distance)
+        self.error_table = ErrorTable.from_csv(filepath, self.animation, op)
 
     def load_selector(self, filename):
         filepath = "%s/selection/%s.csv" % (CsvTest.directory, filename)
