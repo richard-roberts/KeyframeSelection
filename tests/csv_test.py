@@ -9,7 +9,7 @@ from src.utils import IO
 
 
 class CsvTest(unittest.TestCase):
-    directory = "AnimationData"
+    directory = "../tests/AnimationData"
 
     def __init__(self, method_name):
         super().__init__(method_name)

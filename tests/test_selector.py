@@ -11,6 +11,7 @@ class TestSelectors(CsvTest):
     Note: the selector provides a `save()` method that can be used to generate the outputs used in these
           tests. 
     """
+    
     def run_selector_on_test_named(self, selector_class, selector_name, anim):
         self.load_animation(anim)
         self.load_error_table()
@@ -18,9 +19,6 @@ class TestSelectors(CsvTest):
         selector.execute()
         self.compare_csv_output_to_file(selector.as_csv(False), "selection", "%s-%s" % (anim, selector_name))
 
-    def test_greedy(self):
-        self.load_animation("quadbot")
-        self.load_error_matrix()
-        selector = Greedy("Greedy", self.animation, self.error_matrix)
-        selector.execute(12)
-        self.compare_csv_output_to_file(selector.as_csv(False), "selection", "quadbot-Greedy")
+    def test_selectors(self):
+        self.run_selector_on_test_named(Greedy, "Greedy", "small")
+        self.run_selector_on_test_named(Salient, "Salient", "small")
