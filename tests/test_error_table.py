@@ -17,7 +17,7 @@ class TestErrorTable(CsvTest):
         op = ErrorTableOperation(ErrorTableLibrary.max_point_to_line_distance)
         error_table = ErrorTable.from_animation(self.animation, op)
         csv_output = error_table.as_csv()
-        self.compare_csv_output_to_file(csv_output, "evaluation", anim)
+        self.compare_csv_output_to_file(csv_output, "analysis", anim)
 
     def test_error_table(self):
         self.build_error_table_for_test_named("small")

@@ -9,7 +9,7 @@ from src.utils import IO
 
 
 class CsvTest(unittest.TestCase):
-    directory = "AnimationData"
+    directory = "../tests/AnimationData"
 
     def __init__(self, method_name):
         super().__init__(method_name)
@@ -18,11 +18,11 @@ class CsvTest(unittest.TestCase):
         self.selector: Selector = None
 
     def load_animation(self, filename):
-        filepath = "%s/animation/%s.csv" % (CsvTest.directory, filename)
+        filepath = "%s/animation/csv/%s.csv" % (CsvTest.directory, filename)
         self.animation = Animation.character_animation_from_csv(filepath)
 
     def load_error_table(self):
-        filepath = "%s/evaluation/%s.csv" % (CsvTest.directory, self.animation.name)
+        filepath = "%s/analysis/%s.csv" % (CsvTest.directory, self.animation.name)
         op = ErrorTableOperation(ErrorTableLibrary.max_point_to_line_distance)
         self.error_table = ErrorTable.from_csv(filepath, self.animation, op)
 
