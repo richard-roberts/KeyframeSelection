@@ -21,7 +21,9 @@ class Selector:
     def compute(self):
         raise NotImplementedError
 
-    def execute(self, iterations):
+    def execute(self, iterations=-1):
+        if iterations == -1:
+            iterations = self.animation.get_n_frames() - 2
         assert self.error_matrix is not None
 
         for _ in range(iterations):

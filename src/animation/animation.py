@@ -19,6 +19,11 @@ class Animation:
         self.timeline = timeline
         self.frames = frames
 
+    def get_n_frames(self):
+        s = int(self.timeline.start)
+        e = int(self.timeline.end)
+        return e - s + 1
+
     def get_frames(self, timeline: Timeline):
         anim_start_time = int(self.timeline.start)
         s = int(timeline.start)
