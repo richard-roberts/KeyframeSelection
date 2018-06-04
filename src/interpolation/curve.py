@@ -2,10 +2,10 @@ import numpy as np
 
 
 class Curve(object):
-    matrix = np.matrix([[-1.0, 3.0, -3.0, 1.0],
-                        [3.0, -6.0, 3.0, 0.0],
-                        [-3.0, 3.0, 0.0, 0.0],
-                        [1.0, 0.0, 0.0, 0.0]])
+    matrix = np.matrix([[-1.0,  3.0, -3.0,  1.0],
+                        [ 3.0, -6.0,  3.0,  0.0],
+                        [-3.0,  3.0,  0.0,  0.0],
+                        [ 1.0,  0.0,  0.0,  0.0]])
 
     @staticmethod
     def coefficient_a(u):
@@ -151,6 +151,30 @@ class Curve(object):
         self.c = self.d + t1 * x2
         self.update()
 
+    def fit_to_points_free(self, points, us):
+        self.a = points[0]
+        self.d = points[-1]
+        n_dims = len(points[0])
+
+        C14 = np.matrix([ points[0], points[-1] ])
+        anim = np.matrix(points)
+
+        R = []
+        for u in us:
+            r_ = np.matrix([pow(u, 3), pow(u, 2), pow(u, 1), pow(u, 0)])
+            r = r_ * Curve.matrix
+            R.append(r)
+
+        R = np.matrix(np.array(R))
+        R23 = R[:, [1,2]]
+        R14 = R[:, [0,3]]
+        b = anim - R14 * C14
+        
+        c23,_resid,_rank,_s = np.linalg.lstsq(R23, b, rcond=None)
+        self.b = [c23.item(0, i) for i in range(n_dims)]
+        self.c = [c23.item(1, i) for i in range(n_dims)]
+        self.update()
+
     @staticmethod
     def create_from_points(a, b, c, d):
         curve = Curve()
@@ -176,4 +200,11 @@ class Curve(object):
         n = len(points)
         curve = Curve()
         curve.fit_to_points(points, t0, t1, Curve.uniform_sample_set(n))
+        return curve
+
+    @staticmethod
+    def create_by_fitting_points_free(points):
+        n = len(points)
+        curve = Curve()
+        curve.fit_to_points_free(points, Curve.uniform_sample_set(n))
         return curve
