@@ -18,6 +18,9 @@ class Selector:
         self.total_frames = self.animation.timeline.number_of_frames()
         self.previous = Selection.first_selection(self.animation.timeline)
 
+    def get_selections(self):
+        return [s.get() for s in self.selections]
+
     def compute(self):
         raise NotImplementedError
 
