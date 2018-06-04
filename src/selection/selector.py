@@ -1,10 +1,10 @@
 import os
 import time
 
-from src.analysis.error_table import ErrorTable
-from src.animation.animation import Animation
-from src.selection.selection import Selection
-from src.utils import IO, TransformFloatsInList
+from SalientPosesReference.src.analysis.error_table import ErrorTable
+from SalientPosesReference.src.animation.animation import Animation
+from SalientPosesReference.src.selection.selection import Selection
+from SalientPosesReference.src.utils import IO, TransformFloatsInList
 
 
 class Selector:

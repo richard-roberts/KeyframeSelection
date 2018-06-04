@@ -1,4 +1,4 @@
-from src.interpolation.interpolator import Interpolator
+from SalientPosesReference.src.interpolation.interpolator import Interpolator
 
 
 class Schneider(Interpolator):

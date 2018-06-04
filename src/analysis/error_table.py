@@ -1,12 +1,12 @@
 from multiprocessing.dummy import Pool as ThreadPool
 from typing import List, Tuple
 
-from src.analysis.error_table_operation import ErrorTableOperation
-from src.animation.animation import Animation
-from src.animation.timeline import Timeline
-from src.selection.selection import Selection
-from src.types import Time
-from src.utils import IO, TransformStringsInList
+from SalientPosesReference.src.analysis.error_table_operation import ErrorTableOperation
+from SalientPosesReference.src.animation.animation import Animation
+from SalientPosesReference.src.animation.timeline import Timeline
+from SalientPosesReference.src.selection.selection import Selection
+from SalientPosesReference.src.types import Time
+from SalientPosesReference.src.utils import IO, TransformStringsInList
 
 
 class ErrorTable:

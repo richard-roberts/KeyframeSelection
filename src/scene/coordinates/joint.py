@@ -1,4 +1,4 @@
-from src.scene.coordinates.coordinate import Coordinate
+from SalientPosesReference.src.scene.coordinates.coordinate import Coordinate
 
 
 class Joint(Coordinate):

@@ -1,8 +1,8 @@
-from src.analysis.error_table import ErrorTable
-from src.animation.animation import Animation
-from src.animation.timeline import Timeline
-from src.selection.selection import Selection
-from src.selection.selector import Selector
+from SalientPosesReference.src.analysis.error_table import ErrorTable
+from SalientPosesReference.src.animation.animation import Animation
+from SalientPosesReference.src.animation.timeline import Timeline
+from SalientPosesReference.src.selection.selection import Selection
+from SalientPosesReference.src.selection.selector import Selector
 
 
 class Greedy(Selector):

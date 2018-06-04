@@ -1,6 +1,6 @@
 from typing import List
 
-from src.types import Time
+from SalientPosesReference.src.types import Time
 
 
 class Timeline:

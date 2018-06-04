@@ -1,6 +1,6 @@
 from typing import List
 
-from src.scene.coordinates.value import Value
+from SalientPosesReference.src.scene.coordinates.value import Value
 
 
 class Coordinate:

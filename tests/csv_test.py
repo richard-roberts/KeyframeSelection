@@ -1,11 +1,11 @@
 import unittest
 
-from src.analysis.error_table import ErrorTable
-from src.analysis.error_table_library import ErrorTableLibrary
-from src.analysis.error_table_operation import ErrorTableOperation
-from src.animation.animation import Animation
-from src.selection.selector import Selector
-from src.utils import IO
+from SalientPosesReference.src.analysis.error_table import ErrorTable
+from SalientPosesReference.src.analysis.error_table_library import ErrorTableLibrary
+from SalientPosesReference.src.analysis.error_table_operation import ErrorTableOperation
+from SalientPosesReference.src.animation.animation import Animation
+from SalientPosesReference.src.selection.selector import Selector
+from SalientPosesReference.src.utils import IO
 
 
 class CsvTest(unittest.TestCase):

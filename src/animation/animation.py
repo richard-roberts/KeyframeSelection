@@ -2,15 +2,15 @@ from typing import List, Tuple
 
 import numpy as np
 
-from src.animation.frame import Frame
-from src.animation.timeline import Timeline
-from src.scene.coordinates.coordinate import Coordinate
-from src.scene.coordinates.joint import Joint
-from src.scene.coordinates.value import Value
-from src.scene.things.character import Character
-from src.scene.things.thing import Thing
-from src.types import Time
-from src.utils import IO, TransformStringsInList, TransformFloatsInList
+from SalientPosesReference.src.animation.frame import Frame
+from SalientPosesReference.src.animation.timeline import Timeline
+from SalientPosesReference.src.scene.coordinates.coordinate import Coordinate
+from SalientPosesReference.src.scene.coordinates.joint import Joint
+from SalientPosesReference.src.scene.coordinates.value import Value
+from SalientPosesReference.src.scene.things.character import Character
+from SalientPosesReference.src.scene.things.thing import Thing
+from SalientPosesReference.src.types import Time
+from SalientPosesReference.src.utils import IO, TransformStringsInList, TransformFloatsInList
 
 
 class Animation:

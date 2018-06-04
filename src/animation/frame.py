@@ -1,7 +1,7 @@
 from typing import List
 
-from src.scene.things.thing import Thing
-from src.types import Time
+from SalientPosesReference.src.scene.things.thing import Thing
+from SalientPosesReference.src.types import Time
 
 
 class Frame:

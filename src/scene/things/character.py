@@ -1,8 +1,8 @@
 from typing import List
 
-from src.scene.coordinates.coordinate import Coordinate
-from src.scene.meshes.mesh import Mesh
-from src.scene.things.thing import Thing
+from SalientPosesReference.src.scene.coordinates.coordinate import Coordinate
+from SalientPosesReference.src.scene.meshes.mesh import Mesh
+from SalientPosesReference.src.scene.things.thing import Thing
 
 
 class Character(Thing):

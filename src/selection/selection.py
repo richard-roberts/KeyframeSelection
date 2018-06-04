@@ -1,7 +1,7 @@
 from typing import List, Tuple
 
-from src.animation.timeline import Timeline
-from src.types import Time
+from SalientPosesReference.src.animation.timeline import Timeline
+from SalientPosesReference.src.types import Time
 
 
 class Selection:

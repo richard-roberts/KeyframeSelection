@@ -1,5 +1,5 @@
-from src.interpolation.schneider import Schneider
-from src.interpolation.obcf import OptimizationBasedCurveFitting
+from SalientPosesReference.src.interpolation.schneider import Schneider
+from SalientPosesReference.src.interpolation.obcf import OptimizationBasedCurveFitting
 from tests.csv_test import CsvTest
 
 

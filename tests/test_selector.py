@@ -1,5 +1,5 @@
-from src.selection.greedy import Greedy
-from src.selection.salient import Salient
+from SalientPosesReference.src.selection.greedy import Greedy
+from SalientPosesReference.src.selection.salient import Salient
 from tests.csv_test import CsvTest
 
 

@@ -2,7 +2,7 @@ from typing import List, Callable
 
 import numpy as np
 
-from src.animation.frame import Frame
+from SalientPosesReference.src.animation.frame import Frame
 
 
 class ErrorTableOperation:

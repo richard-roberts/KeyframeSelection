@@ -3,9 +3,9 @@ from typing import List
 import numpy as np
 from scipy.optimize import minimize
 
-from src.interpolation.curve import Curve
-from src.interpolation.interpolator import Interpolator
-from src.utils import Math
+from SalientPosesReference.src.interpolation.curve import Curve
+from SalientPosesReference.src.interpolation.interpolator import Interpolator
+from SalientPosesReference.src.utils import Math
 
 
 class Energy:

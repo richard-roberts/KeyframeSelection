@@ -2,10 +2,10 @@ import copy
 import os
 from typing import List
 
-from src.animation.animation import Animation
-from src.interpolation.curve import Curve
-from src.selection.selection import Selection
-from src.utils import IO, Math
+from SalientPosesReference.src.animation.animation import Animation
+from SalientPosesReference.src.interpolation.curve import Curve
+from SalientPosesReference.src.selection.selection import Selection
+from SalientPosesReference.src.utils import IO, Math
 
 
 class Interpolator(object):
